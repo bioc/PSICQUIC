@@ -54,16 +54,18 @@
   psicquic <- PSICQUIC()
   providers(psicquic)
       # query all providers for all known Myc interactions
-  tbl <- rawQuery(psicquic, "BioGrid", "identifier:ALK AND species:9606")
+  if("BioGrid" \%in\% providers(psicquic)){
+     tbl.1 <- rawQuery(psicquic, "BioGrid", "identifier:ALK AND species:9606")
+       # what publications?
+     table(tbl.1$V8)
+     }
 
-      # what publications?
-  table(tbl$V8)
-
-  rawArgs.1 <- "identifier:(ALK AND MAP3K3) AND species:9606"
-  tbl.2 <- rawQuery(psicquic, "iRefIndex", rawArgs.1)
-
-  rawArgs.2 <- paste(rawArgs.1, " AND pubid:(15657099 OR 14743216)", sep="")
-  tbl.3 <- rawQuery(psicquic, "iRefIndex", rawArgs.2)
+  if("iRefIndex" \%in\% providers(psicquic)){
+     rawArgs.1 <- "identifier:(ALK AND MAP3K3) AND species:9606"
+     tbl.2 <- rawQuery(psicquic, "iRefIndex", rawArgs.1)
+     rawArgs.2 <- paste(rawArgs.1, " AND pubid:(15657099 OR 14743216)", sep="")
+     tbl.3 <- rawQuery(psicquic, "iRefIndex", rawArgs.2)
+     }
 
 }
 \seealso{

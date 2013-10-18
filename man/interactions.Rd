@@ -120,13 +120,16 @@
 \examples{
   psicquic <- PSICQUIC()
   providers(psicquic)
-      # query all providers for all known Myc interactions
+      # query the first 3 providers for all known Myc interactions
   tbl.1 <- interactions(psicquic, id="Myc", species="9606",
                         provider=providers(psicquic)[1:3])
 
       # all Myc/EP400 interactions known to BioGrid
-  tbl.2 <- interactions(psicquic, c("Myc", "EP400"), species="9606",
-                        provider="BioGrid")
+      # make sure that BioGrid is currently available
+
+  if("BioGrid" \%in\% providers(psicquic))
+     tbl.2 <- interactions(psicquic, c("Myc", "EP400"), species="9606",
+                           provider="BioGrid")
 
       # or those between Myc and any other molecule, detected by
       # the "pull down" proteomics techniqe and judged to be
