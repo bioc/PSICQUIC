@@ -44,7 +44,7 @@ sampleIDs <- function()
       "string:9606.ENSP00000223500|uniprotkb:Q9Y323",
       "refseq:NP_001167455",
       "ensembl:ENSG00000104765",
-      "ensembl:ENSP00000350720",
+      "ensembl:ENSP00000257290",     # PDGFRA.  we hope that, unlike SMARCA4, it's stable
       "uniprotkb:P34896"             # maps to two geneIDs, we want the lesser
       )
 
@@ -170,10 +170,10 @@ test_.translate.ensemblProt <- function()
    
     x <- PSICQUIC:::.categorize(rawIDs)$ensemblProt
     tbl.x <- PSICQUIC:::.translate.ensemblProt(mart, x)
-    checkEquals(tbl.x, data.frame(id="ENSP00000350720",
-                                  geneID="6597",
-                                  symbol="SMARCA4",
-                                  raw.id="ensembl:ENSP00000350720",
+    checkEquals(tbl.x, data.frame(id="ENSP00000257290",
+                                  geneID="5156",
+                                  symbol="PDGFRA",
+                                  raw.id="ensembl:ENSP00000257290",
                                   stringsAsFactors=FALSE))
 
 
