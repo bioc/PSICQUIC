@@ -1,5 +1,6 @@
 .PSICQUIC <- setClass("PSICQUIC",
-                      slots=c(df="DataFrame"))
+                      slots=c(df="DataFrame",
+                              providers="character"))
 
 setGeneric("interactions", signature="object",
              function(object,
@@ -46,8 +47,18 @@ setValidity("PSICQUIC", function(object) {
     
 })
 #-------------------------------------------------------------------------------
-PSICQUIC <- function()
+PSICQUIC <- function(test=FALSE)
 {
+#   object <- .PSICQUIC()
+#   registry.tbl <- .loadRegistry()
+
+#   if(all(is.na(registry.tbl)))
+#       return(NA)
+   
+#   object@df <- .loadRegistry()
+
+#   object
+
    object <- .PSICQUIC()
    registry.tbl <- .loadRegistry()
 
@@ -55,8 +66,24 @@ PSICQUIC <- function()
        return(NA)
    
    object@df <- .loadRegistry()
+   providers <- rownames(object@df)
+   
+   deleters <- grep("GeneMANIA", providers, ignore.case=TRUE)
+       # GeneMANIA too voluminous, too slow, often simply does not work
+   if(length(deleters) > 0)
+      providers <- providers[-deleters]
+
+   if(test){ # to test robustness against missing providers:
+      count <- length(providers)
+      selected <- sample(1:count, 3)
+      providers <- providers[selected]
+      .printf("test providers: %s", paste(providers, collapse=","))
+      }
+
+   object@providers <- providers
 
    object
+    
 
 } # PSICQUIC ctor
 #-------------------------------------------------------------------------------
@@ -70,8 +97,9 @@ setMethod ("count", signature=c(object="PSICQUIC"),
 setMethod ("providers", signature=c(object="PSICQUIC"),
 
    function (object) {
-      providers <- rownames(object@df)
-      providers[providers!="GeneMANIA"]   # too voluminous, too slow
+      #providers <- rownames(object@df)
+      #providers[providers!="GeneMANIA"]   # too voluminous, too slow
+      object@providers
       })
 
 #-------------------------------------------------------------------------------
