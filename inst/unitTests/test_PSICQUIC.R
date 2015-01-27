@@ -2,6 +2,9 @@
 #-------------------------------------------------------------------------------
 # options(stringsAsFactors=FALSE)
 #-------------------------------------------------------------------------------
+library(PSICQUIC)
+library(RUnit)
+library(RCurl)
 #-------------------------------------------------------------------------------
 kras <- "3845"
 tp53 <- "7157"
@@ -16,9 +19,6 @@ printf <- function(...) print(noquote(sprintf(...)))
 #-------------------------------------------------------------------------------
 paulsTests <- function()
 {
-    library(PSICQUIC)
-    library(RUnit)
-    library(RCurl)
     test_initialConditions()
     test_.loadRegistry()
     test_ctor()
