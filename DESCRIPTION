@@ -1,8 +1,8 @@
 Package: PSICQUIC
 Type: Package
 Title: Proteomics Standard Initiative Common QUery InterfaCe
-Version: 1.19.0
-Date: 2018-01-16
+Version: 1.19.1
+Date: 2018-07-09
 Author: Paul Shannon
 Maintainer: Paul Shannon<pshannon@systemsbiology.org>
 Depends: R (>= 3.2.2), methods, IRanges, biomaRt (>= 2.34.1), BiocGenerics, httr, plyr
