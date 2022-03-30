@@ -1,7 +1,7 @@
 Package: PSICQUIC
 Type: Package
 Title: Proteomics Standard Initiative Common QUery InterfaCe
-Version: 1.33.0
+Version: 1.33.1
 Date: 2020-05-26
 Author: Paul Shannon
 Maintainer: Paul Shannon<pshannon@systemsbiology.org>
@@ -13,3 +13,4 @@ Description: PSICQUIC is a project within the HUPO Proteomics Standard
         molecular interaction databases.
 License: Apache License 2.0
 biocViews: DataImport, GraphAndNetwork, ThirdPartyClient
+PackageStatus: Deprecated
